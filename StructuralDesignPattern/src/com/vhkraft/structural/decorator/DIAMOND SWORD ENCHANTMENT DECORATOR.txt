@@ -1,0 +1,58 @@
+--------------------------------------------------------------------------------
+1. DIAMOND SWORD ENCHANTMENT DECORATOR : DYNAMICALLY STACKING MAGICAL BUFFS
+--------------------------------------------------------------------------------
+Diamond Sword Enchantment Decorator : Dynamically stacking magical buffs
+
+--------------------------------------------------------------------------------
+2. MINECRAFT METAPHOR CREATIVE EXPLANATION
+--------------------------------------------------------------------------------
+In Minecraft, a standard Diamond Sword has a base attack damage. When you visit an 
+Anvil or Enchanting Table, you can dynamically wrap your sword with enchantments like 
+Sharpness and Fire Aspect. Each enchantment wraps around the base weapon, layering on 
+extra damage and special burn effects at runtime without requiring a new sword class 
+for every possible combination of enchantments.
+
+--------------------------------------------------------------------------------
+3. DESIGN PATTERN TITLE & SUMMARY
+--------------------------------------------------------------------------------
+Decorator Pattern : Attach additional responsibilities to an object dynamically. 
+Decorators provide a flexible alternative to subclassing for extending functionality.
+
+--------------------------------------------------------------------------------
+4. DESIGN PATTERN CORE IDEA
+--------------------------------------------------------------------------------
+- Component: Defines the interface for objects that can have responsibilities added dynamically.
+- Concrete Component: Defines an object to which additional responsibilities can be attached.
+- Decorator: Maintains a reference to a Component object and defines an interface that conforms to Component's interface.
+- Concrete Decorators: Add responsibilities or behaviors to the component dynamically.
+
+--------------------------------------------------------------------------------
+5. NORMAL APPROACH VS. DESIGN PATTERN APPROACH
+--------------------------------------------------------------------------------
+- Normal Approach: Creating rigid subclasses for every combination (e.g., SharpnessDiamondSword, 
+  FireAspectDiamondSword, SharpnessFireAspectDiamondSword), causing class explosion.
+- Design Pattern Approach: Wrapping the weapon object dynamically with lightweight decorator 
+  classes, allowing infinite flexible combinations of enchantments at runtime.
+
+--------------------------------------------------------------------------------
+6. FILE LIST & ORDER
+--------------------------------------------------------------------------------
+1. Weapon.java - Component interface defining base weapon attack and description methods.
+2. DiamondSword.java - Concrete component representing the base un-enchanted diamond sword.
+3. WeaponDecorator.java - Abstract decorator implementing Weapon and holding a wrapped weapon reference.
+4. SharpnessEnchantment.java - Concrete decorator adding bonus attack damage to the weapon.
+5. FireAspectEnchantment.java - Concrete decorator adding burn effects to the weapon.
+6. TestDecorator.java - Client class demonstrating dynamic stacking of weapon enchantments.
+
+--------------------------------------------------------------------------------
+7. SIMPLE INTERACTION FLOW
+--------------------------------------------------------------------------------
+Client -> SharpnessEnchantment -> FireAspectEnchantment -> DiamondSword
+
+--------------------------------------------------------------------------------
+8. INTERVIEW TIP
+--------------------------------------------------------------------------------
+Explain that the Decorator pattern is like stacking enchantments on a Minecraft diamond sword. 
+Instead of creating dozens of rigid subclasses for every enchantment combo, you wrap the sword 
+dynamically with Sharpness and Fire Aspect decorators to layer on extra stats and effects at runtime.
+
