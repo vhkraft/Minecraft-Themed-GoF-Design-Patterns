@@ -1,0 +1,60 @@
+--------------------------------------------------------------------------------
+1. MINECRAFT MOB SPAWNER FACTORY METHOD : DECOUPLING ENTITY CREATION
+--------------------------------------------------------------------------------
+Minecraft Mob Spawner Factory Method : Decoupling entity creation
+
+--------------------------------------------------------------------------------
+2. MINECRAFT METAPHOR CREATIVE EXPLANATION
+--------------------------------------------------------------------------------
+In Minecraft dungeons, Mob Spawners generate different hostile entities like Zombies 
+and Skeletons based on their internal spawner type. Instead of hardcoding concrete mob 
+instantiation everywhere in the game loop, the generic MobSpawner defines a factory 
+method (`createMob()`). Concrete spawner subclasses (ZombieSpawner, SkeletonSpawner) 
+override this method to produce their respective mob entities. This allows the game engine 
+to spawn mobs dynamically without tight coupling to specific monster classes.
+
+--------------------------------------------------------------------------------
+3. DESIGN PATTERN TITLE & SUMMARY
+--------------------------------------------------------------------------------
+Factory Method Pattern : Defines an interface for creating an object, but lets subclasses 
+decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.
+
+--------------------------------------------------------------------------------
+4. DESIGN PATTERN CORE IDEA
+--------------------------------------------------------------------------------
+- Product Interface (`Mob`): Declares the common interface for all objects created by the factory.
+- Concrete Products (`Zombie`, `Skeleton`): Implementations of the Product interface.
+- Creator Abstract Class (`MobSpawner`): Declares the factory method `createMob()`.
+- Concrete Creators (`ZombieSpawner`, `SkeletonSpawner`): Override `createMob()` to return specific products.
+
+--------------------------------------------------------------------------------
+5. NORMAL APPROACH VS. DESIGN PATTERN APPROACH
+--------------------------------------------------------------------------------
+- Normal Approach: Using conditional logic (`if-else` or `switch`) with `new Zombie()` directly 
+  in the client game loop, making it hard to add new mob types without altering core code.
+- Design Pattern Approach: Abstracting entity creation into dedicated spawner classes, allowing 
+  new mob types to be added seamlessly by creating new factory subclasses.
+
+--------------------------------------------------------------------------------
+6. FILE LIST & ORDER
+--------------------------------------------------------------------------------
+1. Mob.java - Product interface for all Minecraft mobs.
+2. Zombie.java - Concrete Product 1.
+3. Skeleton.java - Concrete Product 2.
+4. MobSpawner.java - Abstract Creator declaring the factory method.
+5. ZombieSpawner.java - Concrete Creator 1.
+6. SkeletonSpawner.java - Concrete Creator 2.
+7. TestFactoryMethod.java - Client class demonstrating dynamic mob spawning.
+
+--------------------------------------------------------------------------------
+7. SIMPLE INTERACTION FLOW
+--------------------------------------------------------------------------------
+Client -> MobSpawner.spawnMob() -> ConcreteSpawner.createMob() -> Returns Mob Product -> Mob.attack()
+
+--------------------------------------------------------------------------------
+8. INTERVIEW TIP
+--------------------------------------------------------------------------------
+Explain that Factory Method relies on inheritance: a base class defines the interface for creation, 
+and subclasses override the factory method to return specific concrete instances. It satisfies 
+the Open/Closed Principle by allowing new product types without modifying existing creator code.
+
