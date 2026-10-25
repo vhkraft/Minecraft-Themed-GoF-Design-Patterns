@@ -1,0 +1,60 @@
+--------------------------------------------------------------------------------
+1. MINECRAFT CHAT COMMAND INTERPRETER : GRAMMAR EXPRESSION EVALUATION
+--------------------------------------------------------------------------------
+Minecraft Chat Command Interpreter : Grammar expression evaluation
+
+--------------------------------------------------------------------------------
+2. MINECRAFT METAPHOR CREATIVE EXPLANATION
+--------------------------------------------------------------------------------
+In single-player Minecraft, when you type a chat command into the console—such as `/time day` 
+or `/weather clear`—the game uses an Interpreter to parse the text string, break it down into 
+grammar expressions, and execute the corresponding action against the world state. Instead of 
+hardcoding rigid string parsing logic, the Interpreter pattern defines a grammar for the command 
+language and builds an Abstract Syntax Tree (AST) out of expression objects. Each expression node 
+knows how to interpret its part of the command against the active world context.
+
+--------------------------------------------------------------------------------
+3. DESIGN PATTERN TITLE & SUMMARY
+--------------------------------------------------------------------------------
+Interpreter Pattern : Given a language, define a representation for its grammar along with an 
+interpreter that uses the representation to interpret sentences in the language.
+
+--------------------------------------------------------------------------------
+4. DESIGN PATTERN CORE IDEA
+--------------------------------------------------------------------------------
+- Abstract Expression (`CommandExpression`): Declares the `interpret(WorldContext)` method.
+- Terminal Expressions (`TimeCommandExpression`, `WeatherCommandExpression`): Implement 
+  interpretation for basic grammar rules.
+- Non-Terminal Expression (`CommandSequenceExpression`): Combines multiple expressions into a sequence.
+- Context (`WorldContext`): Holds global state (time of day, weather) modified by expressions.
+
+--------------------------------------------------------------------------------
+5. NORMAL APPROACH VS. DESIGN PATTERN APPROACH
+--------------------------------------------------------------------------------
+- Normal Approach: Writing massive, nested `if-else` blocks or complicated regular expressions 
+  directly inside a monolithic command handler, making grammar extensions brittle and hard to maintain.
+- Design Pattern Approach: Modeling grammar rules as hierarchical expression classes, enabling 
+  flexible syntax composition and clean recursive evaluation.
+
+--------------------------------------------------------------------------------
+6. FILE LIST & ORDER
+--------------------------------------------------------------------------------
+1. WorldContext.java - Context class holding global world state (time, weather).
+2. CommandExpression.java - Abstract expression interface defining interpretation contract.
+3. TimeCommandExpression.java - Terminal expression handling time commands.
+4. WeatherCommandExpression.java - Terminal expression handling weather commands.
+5. CommandSequenceExpression.java - Non-terminal composite expression executing command chains.
+6. TestInterpreter.java - Client class parsing and executing command expression trees.
+
+--------------------------------------------------------------------------------
+7. SIMPLE INTERACTION FLOW
+--------------------------------------------------------------------------------
+Client -> CommandSequenceExpression -> [TimeCommandExpression, WeatherCommandExpression] -> WorldContext updated
+
+--------------------------------------------------------------------------------
+8. INTERVIEW TIP
+--------------------------------------------------------------------------------
+Explain how the Interpreter pattern builds a grammatical representation into an Abstract Syntax Tree (AST)—just 
+like parsing Minecraft chat commands (`/time day`, `/weather clear`) into expression nodes that evaluate 
+against a `WorldContext`. Highlight how this makes adding new grammar rules or commands clean and modular 
+following object-oriented principles.
