@@ -1,0 +1,50 @@
+--------------------------------------------------------------------------------
+RECOMMENDED LEARNING ORDER FOR STRUCTURAL DESIGN PATTERNS
+--------------------------------------------------------------------------------
+
+LEVEL 1: THE CORE WRAPPERS (SINGLE INTERFACE TRANSLATORS)
+These patterns introduce the fundamental concept of wrapping an object to change how it is 
+accessed or used.
+
+1. Adapter (Piglin Barter System)
+- Why first: It is the most intuitive structural pattern. You have one target interface, and 
+     you wrap a single incompatible object (like a Piglin bartering system) to make it fit, 
+     establishing the basic idea of composition over rewriting.
+
+2. Facade (Crafting Recipe Book)
+- Why second: Like the Adapter, it wraps things, but instead of translating an interface, 
+     it simplifies multiple complex subsystems into one clean entry point without complex polymorphism.
+
+--------------------------------------------------------------------------------
+LEVEL 2: CONTROLLED & DYNAMIC WRAPPERS
+Once you understand basic wrapping, these patterns add behavioral control or runtime stacking.
+
+3. Proxy (Faction Vault)
+- Why third: Uses the exact same structural shape as an Adapter or Facade, but introduces 
+     access control or lazy initialization, wrapping an object to protect it or delay loading.
+
+4. Decorator (Diamond Sword Enchantments)
+- Why fourth: Takes wrapping to the next level by allowing you to stack multiple wrappers 
+     dynamically at runtime (e.g., wrapping a sword in Sharpness, then wrapping in Fire Aspect).
+
+--------------------------------------------------------------------------------
+LEVEL 3: DECOUPLED & HIERARCHICAL STRUCTURES
+These patterns move away from simple 1-to-1 wrapping into managing independent axes and tree collections.
+
+5. Bridge (Tool Material Bridge)
+- Why fifth: Shifts your mindset from wrapping to decoupling. Instead of an inheritance tree 
+     exploding in size, you split an abstraction from its implementation so they vary independently.
+
+6. Composite (Shulker Box)
+- Why sixth: Introduces recursion and tree structures, teaching you how to treat individual 
+     items (leaves) and container groups (composites) through the exact same unified interface.
+
+--------------------------------------------------------------------------------
+LEVEL 4: ADVANCED PERFORMANCE OPTIMIZATION
+The most advanced structural pattern focused on deep memory management.
+
+7. Flyweight (Oak Leaf Blocks)
+- Why last: The most complex structural pattern because it requires splitting state into 
+     two categories (intrinsic shared data vs. extrinsic coordinates) and managing them through 
+     a caching factory.
+--------------------------------------------------------------------------------

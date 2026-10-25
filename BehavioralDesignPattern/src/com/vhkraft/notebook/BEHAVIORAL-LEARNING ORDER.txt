@@ -1,0 +1,75 @@
+--------------------------------------------------------------------------------
+RECOMMENDED LEARNING ORDER FOR BEHAVIORAL DESIGN PATTERNS
+--------------------------------------------------------------------------------
+
+LEVEL 1: CORE ACTION & EVENT NOTIFICATION
+These patterns introduce the fundamental concepts of swapping algorithms dynamically at runtime 
+and decoupling objects through event-driven observation.
+
+1. Strategy (COMBAT ATTACK STRATEGY)
+- Why first: It is the most intuitive behavioral pattern. It teaches you how to encapsulate 
+     interchangeable algorithms (e.g., melee vs. ranged attack strategies) behind a common interface, 
+     replacing massive conditional statements.
+
+2. Observer (REDSTONE OBSERVER BLOCK Crop harvest)
+- Why second: Introduces event-driven programming and loose coupling. Instead of polling, objects 
+     automatically notify registered listeners when their state changes (like a redstone observer block 
+     detecting crop growth to trigger a harvest action).
+
+--------------------------------------------------------------------------------
+LEVEL 2: EXECUTION SKELETONS & STATE MANAGEMENT
+These patterns focus on standardizing algorithmic steps via inheritance and managing internal object 
+states without bloated conditional logic.
+
+3. Template Method (POTION BREWING WORKFLOW TEMPLATE)
+- Why third: It builds naturally on Strategy by defining an algorithmic skeleton in a superclass 
+     while delegating specific variable steps to subclasses (similar to standardizing the potion brewing workflow).
+
+4. State (WARDEN AGGRESSION STATE MACHINE)
+- Why fourth: Shows how an object can drastically alter its behavior when its internal state changes, 
+     cleanly replacing complex nested switch-case blocks (such as the Warden shifting through sniffing, 
+     roaring, and attacking states).
+
+--------------------------------------------------------------------------------
+LEVEL 3: REQUEST ENCAPSULATION & COLLECTION TRAVERSAL
+These patterns turn operations into first-party objects and provide uniform ways to traverse 
+underlying data structures.
+
+5. Command (ARMOR STAND POSE ADJUSTER STICK)
+- Why fifth: Encapsulates actions as standalone objects, decoupling the sender from the executor 
+     to enable queuing, logging, and undo/redo capabilities (like the armor stand pose adjuster stick recording commands).
+
+6. Iterator (VILLAGER TRADE ROLL CYCLER)
+- Why sixth: Provides a standard, uniform way to sequentially traverse elements of an aggregate collection 
+     without exposing its underlying internal representation (like cycling through available villager trade rolls).
+
+--------------------------------------------------------------------------------
+LEVEL 4: PIPELINE ROUTING & CENTRAL COORDINATION
+These patterns handle multi-object interactions by passing requests down sequential handler chains 
+or routing communications through a central hub.
+
+7. Chain of Responsibility (Hopper Transfer Pipeline Filters)
+- Why seventh: Teaches you how to pass requests down a dynamic pipeline of independent handlers 
+     until one takes ownership, completely decoupling senders from receivers (like hopper pipeline filters sorting items).
+
+8. Mediator (VILLAGE RAID BELL ALARM)
+- Why eighth: Simplifies complex many-to-many object communications by routing all interactions 
+     through a single centralized controller object rather than allowing tangled direct references 
+     (like the village raid bell alarm coordinating villagers and iron golems).
+
+--------------------------------------------------------------------------------
+LEVEL 5: STATE SNAPSHOTS, EXTERNAL INSPECTION & LANGUAGE PARSING
+The most advanced tier, focusing on saving object states, executing external operations across trees, 
+and parsing formal grammars.
+
+9. Memento (BED CHECKPOINT & NETHER DEATH RESPAWN)
+- Why ninth: Focuses on capturing and safely externalizing an object's internal state so it can be 
+     restored later without breaking encapsulation barriers (like bed checkpoints and respawn data snapshots).
+
+10. Visitor (TOOL DURABILITY & REPAIR INSPECTOR)
+- Why tenth: Reverses traditional object-oriented encapsulation by allowing you to add brand-new 
+     operations across diverse object structures externally without modifying their classes (like the tool durability & repair inspector visiting items).
+
+11. Interpreter (CHAT COMMAND INTERPRETER)
+- Why eleventh: The summit of behavioral patterns. It defines a formal grammar representation and 
+     builds an Abstract Syntax Tree (AST) to evaluate expressions and commands dynamically (like parsing chat commands).
