@@ -1,0 +1,60 @@
+--------------------------------------------------------------------------------
+1. MINECRAFT TOOL MATERIAL BRIDGE : DECOUPLING TOOL TYPES FROM MATERIAL STATS
+--------------------------------------------------------------------------------
+Minecraft Tool Material Bridge : Decoupling tool types from material stats
+
+--------------------------------------------------------------------------------
+2. MINECRAFT METAPHOR CREATIVE EXPLANATION
+--------------------------------------------------------------------------------
+In Minecraft, tool types (Pickaxe, Axe) and material tiers (Wood, Diamond, Netherite) 
+can theoretically be combined independently. Instead of creating a rigid class hierarchy 
+like WoodenPickaxe, DiamondPickaxe, WoodenAxe, and DiamondAxe—which leads to class 
+explosion—the Bridge pattern separates the Tool abstraction from the ToolMaterial 
+implementation. This allows tool types and material stats to vary and scale independently.
+
+--------------------------------------------------------------------------------
+3. DESIGN PATTERN TITLE & SUMMARY
+--------------------------------------------------------------------------------
+Bridge Pattern : Decouples an abstraction from its implementation so that the two can 
+vary independently.
+
+--------------------------------------------------------------------------------
+4. DESIGN PATTERN CORE IDEA
+--------------------------------------------------------------------------------
+- Abstraction: Defines the high-level abstraction interface and maintains a reference 
+  to an Implementor object.
+- Refined Abstraction: Extends the interface defined by Abstraction.
+- Implementor: Defines the interface for implementation classes without knowing about abstractions.
+- Concrete Implementor: Implements the Implementor interface with specific platform or tier details.
+
+--------------------------------------------------------------------------------
+5. NORMAL APPROACH VS. DESIGN PATTERN APPROACH
+--------------------------------------------------------------------------------
+- Normal Approach: Subclassing every combination of tool and material (e.g., WoodenPickaxe, 
+  DiamondPickaxe), leading to massive code duplication and class explosion.
+- Design Pattern Approach: Using a bridge composition link between Tool and ToolMaterial, 
+  allowing any tool type to combine with any material tier dynamically.
+
+--------------------------------------------------------------------------------
+6. FILE LIST & ORDER
+--------------------------------------------------------------------------------
+1. ToolMaterial.java - Implementor interface defining base durability and mining multipliers.
+2. WoodenMaterial.java - Concrete implementor representing weak wooden tier stats.
+3. DiamondMaterial.java - Concrete implementor representing strong diamond tier stats.
+4. Tool.java - Abstraction class holding a reference to a ToolMaterial.
+5. Pickaxe.java - Refined abstraction representing a pickaxe tool utilizing the material.
+6. TestBridge.java - Client class demonstrating independent tool and material combinations.
+
+--------------------------------------------------------------------------------
+7. SIMPLE INTERACTION FLOW
+--------------------------------------------------------------------------------
+Client -> Pickaxe (Refined Abstraction) -> Tool (Abstraction) -> DiamondMaterial (Concrete Implementor)
+
+--------------------------------------------------------------------------------
+8. INTERVIEW TIP
+--------------------------------------------------------------------------------
+Explain that the Bridge pattern is like separating Minecraft tool types (Pickaxe, Axe) 
+from their material tiers (Wood, Diamond). Instead of creating a rigid class for every 
+possible combination, you bridge the tool abstraction to a material implementor, letting 
+both hierarchies scale independently.
+
