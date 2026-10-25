@@ -1,0 +1,60 @@
+--------------------------------------------------------------------------------
+1. MINECRAFT VILLAGE RAID BELL ALARM : CENTRALIZED COMMUNICATION
+--------------------------------------------------------------------------------
+Minecraft Village Raid Bell Alarm : Centralized communication and coordination
+
+--------------------------------------------------------------------------------
+2. MINECRAFT METAPHOR CREATIVE EXPLANATION
+--------------------------------------------------------------------------------
+In single-player Minecraft, when a village is attacked during a Raid, ringing the central 
+Village Bell immediately coordinates everyone: villagers run indoors to hide and iron golems 
+march to the center to defend. Instead of every individual villager and iron golem holding direct 
+references to each other and creating a chaotic web of point-to-point interactions, they all 
+communicate exclusively through the central Village Bell (the Mediator). When the bell is rung, 
+it coordinates the entire group reaction, keeping individual entities completely decoupled.
+
+--------------------------------------------------------------------------------
+3. DESIGN PATTERN TITLE & SUMMARY
+--------------------------------------------------------------------------------
+Mediator Pattern : Defines an object that encapsulates how a set of objects interact, promoting 
+loose coupling by keeping objects from referring to each other explicitly and letting you vary 
+their interactions independently.
+
+--------------------------------------------------------------------------------
+4. DESIGN PATTERN CORE IDEA
+--------------------------------------------------------------------------------
+- Mediator Interface (`Mediator`): Declares communication contracts for colleagues.
+- Concrete Mediator (`VillageBellMediator`): Coordinates interactions between registered colleagues.
+- Colleague Base / Classes (`Colleague`, `VillagerColleague`, `IronGolemColleague`): Communicate 
+  only through the mediator rather than with each other directly.
+
+--------------------------------------------------------------------------------
+5. NORMAL APPROACH VS. DESIGN PATTERN APPROACH
+--------------------------------------------------------------------------------
+- Normal Approach: Many-to-many direct references where every villager, guard, and golem must 
+  know about and talk to every other entity, creating a tightly coupled spiderweb of dependencies.
+- Design Pattern Approach: Channeling all communication through a single central mediator (the Village Bell), 
+  reducing many-to-many communication down to simple one-to-many relationships.
+
+--------------------------------------------------------------------------------
+6. FILE LIST & ORDER
+--------------------------------------------------------------------------------
+1. Mediator.java - Mediator interface defining event broadcast and notification rules.
+2. Colleague.java - Abstract base class for village entities interacting through the bell.
+3. VillagerColleague.java - Concrete colleague representing villagers running for cover.
+4. IronGolemColleague.java - Concrete colleague representing iron golems marching to defend.
+5. VillageBellMediator.java - Concrete mediator managing entity registrations and raid alerts.
+6. TestMediator.java - Client class demonstrating raid bell alarm coordination.
+
+--------------------------------------------------------------------------------
+7. SIMPLE INTERACTION FLOW
+--------------------------------------------------------------------------------
+Player -> VillageBellMediator.ringBell() -> Mediator notifies VillagerColleague (hide) & IronGolemColleague (defend)
+
+--------------------------------------------------------------------------------
+8. INTERVIEW TIP
+--------------------------------------------------------------------------------
+Explain how the Mediator pattern replaces complex many-to-many object relationships with a central hub—just 
+like routing all raid defense behaviors through the central Village Bell instead of having villagers 
+and iron golems directly signal one another. Highlight how this reduces coupling and makes adding 
+new participants (like archer guards) trivial without modifying existing entities.
