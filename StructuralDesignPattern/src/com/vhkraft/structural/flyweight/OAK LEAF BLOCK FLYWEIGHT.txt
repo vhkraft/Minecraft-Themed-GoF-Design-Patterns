@@ -1,0 +1,58 @@
+--------------------------------------------------------------------------------
+1. OAK LEAF BLOCK FLYWEIGHT : SHARING INTRINSIC TEXTURES ACROSS MILLIONS OF BLOCKS
+--------------------------------------------------------------------------------
+Oak Leaf Block Flyweight : Sharing intrinsic textures across millions of blocks
+
+--------------------------------------------------------------------------------
+2. MINECRAFT METAPHOR CREATIVE EXPLANATION
+--------------------------------------------------------------------------------
+In a Minecraft world, rendering millions of identical Oak Leaf blocks individually would 
+consume massive amounts of RAM if every single block stored its own heavy texture and 
+model data. The Flyweight pattern separates the shared intrinsic state (the leaf texture 
+and render model) from the unique extrinsic state (the specific X, Y, Z coordinates in the 
+world). This allows millions of blocks to reference just a single shared flyweight instance.
+
+--------------------------------------------------------------------------------
+3. DESIGN PATTERN TITLE & SUMMARY
+--------------------------------------------------------------------------------
+Flyweight Pattern : Uses sharing to support large numbers of fine-grained objects 
+efficiently, separating intrinsic (shared) state from extrinsic (contextual) state.
+
+--------------------------------------------------------------------------------
+4. DESIGN PATTERN CORE IDEA
+--------------------------------------------------------------------------------
+- Flyweight: Declares an interface through which flyweights can receive and act on extrinsic state.
+- Concrete Flyweight: Implements the Flyweight interface and stores intrinsic (shared) state.
+- Flyweight Factory: Creates and manages flyweight objects, ensuring they are shared correctly.
+- Client: Maintains extrinsic state and computes or stores it to pass into flyweight methods.
+
+--------------------------------------------------------------------------------
+5. NORMAL APPROACH VS. DESIGN PATTERN APPROACH
+--------------------------------------------------------------------------------
+- Normal Approach: Instantiating every single block in the world as a heavy independent 
+  object with its own texture and metadata, leading to severe memory bloat and out-of-memory crashes.
+- Design Pattern Approach: Caching and sharing lightweight flyweight instances for identical 
+  block types, drastically reducing RAM usage by passing coordinates dynamically at render time.
+
+--------------------------------------------------------------------------------
+6. FILE LIST & ORDER
+--------------------------------------------------------------------------------
+1. BlockType.java - Flyweight interface defining the render method accepting coordinates.
+2. OakLeafBlockType.java - Concrete flyweight storing shared texture and model data.
+3. BlockFactory.java - Flyweight factory managing and caching unique block type instances.
+4. WorldBlock.java - Context class holding extrinsic coordinates referencing a shared block type.
+5. TestFlyweight.java - Client class simulating rendering a massive forest world efficiently.
+
+--------------------------------------------------------------------------------
+7. SIMPLE INTERACTION FLOW
+--------------------------------------------------------------------------------
+Client -> BlockFactory -> OakLeafBlockType (Concrete Flyweight) <- WorldBlock (Context)
+
+--------------------------------------------------------------------------------
+8. INTERVIEW TIP
+--------------------------------------------------------------------------------
+Explain that the Flyweight pattern is like rendering millions of identical oak leaf blocks 
+in a Minecraft forest. Instead of duplicating heavy texture data for every block, you store 
+the shared texture as intrinsic state and pass the X, Y, Z coordinates as extrinsic state 
+at runtime to save massive amounts of memory.
+
