@@ -1,0 +1,56 @@
+--------------------------------------------------------------------------------
+1. FACTION VAULT CHEST PROXY : CONTROLLING ACCESS TO SECURE STORAGE
+--------------------------------------------------------------------------------
+Faction Vault Chest Proxy : Controlling access to secure storage
+
+--------------------------------------------------------------------------------
+2. MINECRAFT METAPHOR CREATIVE EXPLANATION
+--------------------------------------------------------------------------------
+In multiplayer Minecraft faction servers, high-tier valuables are stored in secure faction 
+vaults. You don't want just any wandering player or enemy raiding your items. The Proxy 
+pattern acts as a security gatekeeper in front of the Real Vault Chest, intercepting 
+interaction requests to verify if the player has the correct faction rank before forwarding 
+the open command.
+
+--------------------------------------------------------------------------------
+3. DESIGN PATTERN TITLE & SUMMARY
+--------------------------------------------------------------------------------
+Proxy Pattern : Provides a surrogate or placeholder for another object to control access to it, 
+often used for lazy initialization, access control, or remote logging.
+
+--------------------------------------------------------------------------------
+4. DESIGN PATTERN CORE IDEA
+--------------------------------------------------------------------------------
+- Subject: Interface defining the common operations for both RealSubject and Proxy.
+- RealSubject: The core object that performs the actual heavy work or holds sensitive data.
+- Proxy: Controls access to the RealSubject, handling security checks or validation logic.
+- Client: Interacts with objects through the Subject interface, unaware of security barriers.
+
+--------------------------------------------------------------------------------
+5. NORMAL APPROACH VS. DESIGN PATTERN APPROACH
+--------------------------------------------------------------------------------
+- Normal Approach: Putting security checks directly inside the chest class or letting any client 
+  code handle permissions, causing tight coupling and security vulnerabilities.
+- Design Pattern Approach: Wrapping the container with a protection proxy that enforces access 
+  rules transparently, keeping core storage clean and security logic decoupled.
+
+--------------------------------------------------------------------------------
+6. FILE LIST & ORDER
+--------------------------------------------------------------------------------
+1. Container.java - Subject interface defining standard container interaction methods.
+2. RealVaultChest.java - Real Subject representing the secure chest holding rare valuables.
+3. VaultChestProxy.java - Protection Proxy class verifying player rank before granting access.
+4. TestProxy.java - Client class simulating authorized and unauthorized players opening vaults.
+
+--------------------------------------------------------------------------------
+7. SIMPLE INTERACTION FLOW
+--------------------------------------------------------------------------------
+Client -> VaultChestProxy (Protection Proxy) -> RealVaultChest (Real Subject)
+
+--------------------------------------------------------------------------------
+8. INTERVIEW TIP
+--------------------------------------------------------------------------------
+Explain that a protection proxy is like a secure faction vault chest on a multiplayer server. 
+Instead of bloating the chest class with permission checks, you place a proxy gatekeeper in 
+front of it to verify player ranks before granting access to the valuables inside.
+
