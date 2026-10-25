@@ -1,0 +1,61 @@
+--------------------------------------------------------------------------------
+1. MINECRAFT VILLAGER TRADE ROLL CYCLER : SEQUENTIAL TRAVERSAL ENCAPSULATION
+--------------------------------------------------------------------------------
+Minecraft Villager Trade Roll Cycler : Sequential traversal encapsulation
+
+--------------------------------------------------------------------------------
+2. MINECRAFT METAPHOR CREATIVE EXPLANATION
+--------------------------------------------------------------------------------
+In single-player Minecraft, interacting with a Villager (such as a Fletcher or Librarian) 
+presents a list of active trading offers. An automated trading station or UI menu needs to 
+cycle through these trades sequentially to find desired items without knowing how the trades 
+are stored internally (whether in a fixed array, dynamic list, or custom collection). The 
+Iterator pattern provides a standard cursor (`hasNext()`, `next()`) to traverse all villager 
+trade offers step-by-step while completely hiding the underlying aggregate structure.
+
+--------------------------------------------------------------------------------
+3. DESIGN PATTERN TITLE & SUMMARY
+--------------------------------------------------------------------------------
+Iterator Pattern : Provides a way to access the elements of an aggregate object sequentially 
+without exposing its underlying representation.
+
+--------------------------------------------------------------------------------
+4. DESIGN PATTERN CORE IDEA
+--------------------------------------------------------------------------------
+- Iterator Interface (`TradeIterator`): Declares traversal methods (`hasNext()`, `next()`).
+- Concrete Iterator (`VillagerTradeIterator`): Implements traversal logic and maintains cursor position.
+- Aggregate Interface (`TradeCollection`): Declares method to create an iterator.
+- Concrete Aggregate (`Villager`): Holds trade items internally and yields an iterator instance.
+
+--------------------------------------------------------------------------------
+5. NORMAL APPROACH VS. DESIGN PATTERN APPROACH
+--------------------------------------------------------------------------------
+- Normal Approach: Exposing internal arrays or collections directly (`getTradesArray()`), forcing 
+  client code to tightly couple to implementation details and handle index tracking manually.
+- Design Pattern Approach: Encapsulating traversal state inside a dedicated iterator object, 
+  allowing uniform, decoupled iteration over any aggregate structure.
+
+--------------------------------------------------------------------------------
+6. FILE LIST & ORDER
+--------------------------------------------------------------------------------
+1. Trade.java - Model class representing a villager trade offer.
+2. TradeIterator.java - Iterator interface defining navigation operations.
+3. TradeCollection.java - Aggregate interface for creating trade iterators.
+4. Villager.java - Concrete aggregate representing a Minecraft villager holding trades.
+5. VillagerTradeIterator.java - Concrete iterator implementing sequential trade traversal.
+6. TestIterator.java - Client class demonstrating villager trade sequence browsing.
+
+--------------------------------------------------------------------------------
+7. SIMPLE INTERACTION FLOW
+--------------------------------------------------------------------------------
+Client -> Villager.createIterator() -> VillagerTradeIterator -> Loop (hasNext() / next()) -> Trade details
+
+--------------------------------------------------------------------------------
+8. INTERVIEW TIP
+--------------------------------------------------------------------------------
+Explain how the Iterator pattern provides a uniform interface to cycle through elements without 
+exposing underlying collections—just like browsing a villager's trade rolls using `hasNext()` 
+and `next()` via a `VillagerTradeIterator` without worrying whether the trades are stored in an 
+array, arraylist, or custom map. Highlight how this upholds the Single Responsibility Principle 
+by separating traversal logic from aggregate storage.
+
