@@ -1,0 +1,63 @@
+--------------------------------------------------------------------------------
+1. MINECRAFT BIOME ASSET FACTORY ABSTRACT FACTORY : CREATING FAMILIES OF OBJECTS
+--------------------------------------------------------------------------------
+Minecraft Biome Asset Factory Abstract Factory : Creating families of objects
+
+--------------------------------------------------------------------------------
+2. MINECRAFT METAPHOR CREATIVE EXPLANATION
+--------------------------------------------------------------------------------
+In Minecraft, different dimensions like the Overworld and the Nether possess entirely 
+distinct ecological themes. The Overworld features Oak Trees and Grass Blocks, while 
+the Nether features crimson Nether Fungi and Netherrack blocks. Mixing these up breaks 
+immersion. An Abstract Factory (`BiomeAssetFactory`) provides an interface for creating 
+families of related products (Trees and Soils) without hardcoding their concrete classes, 
+guaranteeing that dimension-specific blocks and flora are always created together harmoniously.
+
+--------------------------------------------------------------------------------
+3. DESIGN PATTERN TITLE & SUMMARY
+--------------------------------------------------------------------------------
+Abstract Factory Pattern : Provides an interface for creating families of related or 
+dependent objects without specifying their concrete classes.
+
+--------------------------------------------------------------------------------
+4. DESIGN PATTERN CORE IDEA
+--------------------------------------------------------------------------------
+- Abstract Factory (`BiomeAssetFactory`): Declares creation methods for each product type (`createTree()`, `createSoil()`).
+- Concrete Factories (`OverworldAssetFactory`, `NetherAssetFactory`): Implement creation methods to produce specific product families.
+- Abstract Products (`Tree`, `Soil`): Interfaces for individual product types.
+- Concrete Products (`OakTree`, `GrassBlock`, `NetherFungus`, `Netherrack`): Specific variants grouped by theme.
+
+--------------------------------------------------------------------------------
+5. NORMAL APPROACH VS. DESIGN PATTERN APPROACH
+--------------------------------------------------------------------------------
+- Normal Approach: Instantiating concrete blocks directly with `new` throughout world generation logic, 
+  leading to mismatched asset pairings (e.g., Nether Fungi growing on Grass Blocks).
+- Design Pattern Approach: Grouping creation into themed factories, ensuring that requesting an 
+  Overworld factory always yields matching Overworld assets.
+
+--------------------------------------------------------------------------------
+6. FILE LIST & ORDER
+--------------------------------------------------------------------------------
+1. Tree.java - Abstract Product interface for flora.
+2. Soil.java - Abstract Product interface for ground blocks.
+3. OakTree.java - Concrete Product implementing Tree for the Overworld.
+4. GrassBlock.java - Concrete Product implementing Soil for the Overworld.
+5. NetherFungus.java - Concrete Product implementing Tree for the Nether.
+6. Netherrack.java - Concrete Product implementing Soil for the Nether.
+7. BiomeAssetFactory.java - Abstract Factory interface.
+8. OverworldAssetFactory.java - Concrete Factory for Overworld assets.
+9. NetherAssetFactory.java - Concrete Factory for Nether assets.
+10. TestAbstractFactory.java - Client class demonstrating family creation.
+
+--------------------------------------------------------------------------------
+7. SIMPLE INTERACTION FLOW
+--------------------------------------------------------------------------------
+Client -> BiomeAssetFactory.createTree() -> Returns Themed Tree Product
+Client -> BiomeAssetFactory.createSoil() -> Returns Themed Soil Product
+
+--------------------------------------------------------------------------------
+8. INTERVIEW TIP
+--------------------------------------------------------------------------------
+Explain that Abstract Factory is a factory of factories. Use it when your system needs to create 
+multiple related objects that must work together, preventing invalid cross-family combinations.
+
