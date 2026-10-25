@@ -1,0 +1,62 @@
+--------------------------------------------------------------------------------
+1. MINECRAFT HOPPER TRANSFER PIPELINE FILTERS : REQUEST HANDLING CHAIN
+--------------------------------------------------------------------------------
+Minecraft Hopper Transfer Pipeline Filters : Request handling chain
+
+--------------------------------------------------------------------------------
+2. MINECRAFT METAPHOR CREATIVE EXPLANATION
+--------------------------------------------------------------------------------
+In single-player Minecraft, when building an automated item sorting system, items flow down a 
+pipeline of connected Hoppers. Each Hopper in the chain acts as a distinct filter handler: an 
+Ore Hopper inspects if an item is an ore, a Food Hopper checks if it is food, and a Junk Hopper 
+catches whatever remains. Instead of writing a massive nested `if-else` block inside a single 
+sorter class, items are passed down a chain of separate Hopper handlers. Each handler processes 
+the item or delegates it to the next hopper in line.
+
+--------------------------------------------------------------------------------
+3. DESIGN PATTERN TITLE & SUMMARY
+--------------------------------------------------------------------------------
+Chain of Responsibility Pattern : Avoids coupling the sender of a request to its receiver by 
+giving more than one object a chance to handle the request. Chains the receiving objects and 
+passes the request along the chain until an object handles it.
+
+--------------------------------------------------------------------------------
+4. DESIGN PATTERN CORE IDEA
+--------------------------------------------------------------------------------
+- Handler Interface / Abstract Class (`HopperHandler`): Defines the interface for handling 
+  requests and setting the next successor in the chain.
+- Concrete Handlers (`OreHopper`, `FoodHopper`, `JunkHopper`): Handle specific item requests or pass 
+  them to the next handler.
+- Request (`Item`): Object containing request details (item name, category).
+
+--------------------------------------------------------------------------------
+5. NORMAL APPROACH VS. DESIGN PATTERN APPROACH
+--------------------------------------------------------------------------------
+- Normal Approach: Hardcoding tight conditional branches (`if/else if/else`) inside a single central 
+  sorter class, making adding new item categories rigid and difficult to extend.
+- Design Pattern Approach: Decoupling sender from receiver by constructing dynamic, runtime-configurable 
+  chains of independent handler objects.
+
+--------------------------------------------------------------------------------
+6. FILE LIST & ORDER
+--------------------------------------------------------------------------------
+1. Item.java - Model class representing items moving through the hopper pipeline.
+2. HopperHandler.java - Abstract handler defining successor chaining and handling logic.
+3. OreHopper.java - Concrete handler for sorting ore items.
+4. FoodHopper.java - Concrete handler for sorting food items.
+5. JunkHopper.java - Concrete handler acting as fallback for unsorted items.
+6. TestChainOfResponsibility.java - Client class assembling the hopper chain and pushing items through.
+
+--------------------------------------------------------------------------------
+7. SIMPLE INTERACTION FLOW
+--------------------------------------------------------------------------------
+Client -> OreHopper.handleItem() -> [Match? Sort : Pass to FoodHopper] -> [Match? Sort : Pass to JunkHopper]
+
+--------------------------------------------------------------------------------
+8. INTERVIEW TIP
+--------------------------------------------------------------------------------
+Explain how the Chain of Responsibility pattern decouples a request sender from its handlers by passing 
+the request through a chain of objects—just like an item floating through a line of Minecraft Hoppers 
+(`OreHopper` -> `FoodHopper` -> `JunkHopper`) where each hopper checks if it can process the item or passes 
+it downstream. Highlight how this makes adding new handlers (like a `ToolHopper`) effortless without 
+altering existing code.
