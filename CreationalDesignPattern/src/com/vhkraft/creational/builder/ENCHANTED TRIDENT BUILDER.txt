@@ -1,0 +1,54 @@
+--------------------------------------------------------------------------------
+1. MINECRAFT CUSTOM ENCHANTED TRIDENT BUILDER : STEP-BY-STEP FLUENT CONSTRUCTION
+--------------------------------------------------------------------------------
+Minecraft Custom Enchanted Trident Builder : Step-by-step fluent construction
+
+--------------------------------------------------------------------------------
+2. MINECRAFT METAPHOR CREATIVE EXPLANATION
+--------------------------------------------------------------------------------
+In Minecraft, configuring an elite custom Trident involves setting up base properties 
+alongside mutually exclusive enchantments (such as choosing between Riptide for movement 
+or Loyalty/Channeling for combat) plus optional levels of Impaling and Unbreaking. 
+Using standard constructors with numerous optional parameters leads to unreadable code 
+and impossible validation logic. The Builder pattern provides a clean, fluent method-chaining 
+API (`new TridentBuilder().loyalty(3).channeling(true).build()`) while allowing the builder 
+to validate rule constraints before instantiating the final immutable object.
+
+--------------------------------------------------------------------------------
+3. DESIGN PATTERN TITLE & SUMMARY
+--------------------------------------------------------------------------------
+Builder Pattern : Separates the construction of a complex object from its representation, 
+allowing the same construction process to create different representations step-by-step.
+
+--------------------------------------------------------------------------------
+4. DESIGN PATTERN CORE IDEA
+--------------------------------------------------------------------------------
+- Immutable Product (`EnchantedTrident`): Complex object with private constructor and final fields.
+- Static Nested Builder (`Builder`): Provides fluent chaining methods to configure optional attributes.
+- Validation Logic (`build()`): Enforces business rules (e.g., mutually exclusive enchantments) prior to creation.
+
+--------------------------------------------------------------------------------
+5. NORMAL APPROACH VS. DESIGN PATTERN APPROACH
+--------------------------------------------------------------------------------
+- Normal Approach: Telescoping constructors with 6+ overloaded variants or massive parameter lists 
+  where boolean flags are easily confused.
+- Design Pattern Approach: A fluent builder API that makes instantiation self-documenting, readable, 
+  and secure against invalid object states.
+
+--------------------------------------------------------------------------------
+6. FILE LIST & ORDER
+--------------------------------------------------------------------------------
+1. EnchantedTrident.java - Immutable Product class containing the static Builder.
+2. TestBuilder.java - Client class demonstrating fluent construction and rule validation.
+
+--------------------------------------------------------------------------------
+7. SIMPLE INTERACTION FLOW
+--------------------------------------------------------------------------------
+Client -> new EnchantedTrident.Builder().loyalty(3).build() -> Validates & Returns Immutable Trident
+
+--------------------------------------------------------------------------------
+8. INTERVIEW TIP
+--------------------------------------------------------------------------------
+Explain that the Builder pattern is ideal when an object requires numerous optional configuration parameters 
+or strict construction validation. It prevents telescoping constructors and ensures immutable object safety.
+
