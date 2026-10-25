@@ -1,0 +1,58 @@
+--------------------------------------------------------------------------------
+1. MINECRAFT COMBAT ATTACK STRATEGY : INTERCHANGEABLE ALGORITHMS
+--------------------------------------------------------------------------------
+Minecraft Combat Attack Strategy : Interchangeable algorithms
+
+--------------------------------------------------------------------------------
+2. MINECRAFT METAPHOR CREATIVE EXPLANATION
+--------------------------------------------------------------------------------
+In single-player Minecraft, your combat approach changes entirely depending on your equipped 
+weapon. With a Diamond Sword, you execute close-range melee sweeps. With a Bow, you charge 
+and fire ranged projectiles. With a Trident, you unleash a mobility dash attack. Instead of 
+stuffing your player class with massive conditional statements (if-else/switch) for every weapon, 
+the Strategy pattern encapsulates each combat behavior into its own class. The player context 
+simply delegates attacks to a `CombatStrategy` interface, allowing you to swap weapons dynamically at runtime.
+
+--------------------------------------------------------------------------------
+3. DESIGN PATTERN TITLE & SUMMARY
+--------------------------------------------------------------------------------
+Strategy Pattern : Defines a family of algorithms, encapsulates each one, and makes them 
+interchangeable. Strategy lets the algorithm vary independently from clients that use it.
+
+--------------------------------------------------------------------------------
+4. DESIGN PATTERN CORE IDEA
+--------------------------------------------------------------------------------
+- Strategy Interface (`CombatStrategy`): Declares the common attack operation.
+- Concrete Strategies (`SwordAttackStrategy`, `BowAttackStrategy`, `TridentAttackStrategy`): 
+  Implement specific combat algorithms.
+- Context (`CombatContext`): Maintains a reference to a strategy object and delegates execution to it.
+
+--------------------------------------------------------------------------------
+5. NORMAL APPROACH VS. DESIGN PATTERN APPROACH
+--------------------------------------------------------------------------------
+- Normal Approach: Massive conditional blocks inside a monolithic class checking weapon types, 
+  violating the Open-Closed Principle and making code hard to maintain.
+- Design Pattern Approach: Encapsulating each algorithm into isolated strategy classes, 
+  making it trivial to add new weapons without touching existing logic.
+
+--------------------------------------------------------------------------------
+6. FILE LIST & ORDER
+--------------------------------------------------------------------------------
+1. CombatStrategy.java - Strategy interface for attack behaviors.
+2. SwordAttackStrategy.java - Concrete strategy for melee sword combat.
+3. BowAttackStrategy.java - Concrete strategy for ranged bow combat.
+4. TridentAttackStrategy.java - Concrete strategy for riptide dash combat.
+5. CombatContext.java - Context class holding the active strategy and executing attacks.
+6. TestStrategy.java - Client class demonstrating runtime strategy switching.
+
+--------------------------------------------------------------------------------
+7. SIMPLE INTERACTION FLOW
+--------------------------------------------------------------------------------
+Client -> CombatContext.setStrategy(new SwordAttackStrategy()) -> Context.executeAttack() -> Sword logic
+
+--------------------------------------------------------------------------------
+8. INTERVIEW TIP
+--------------------------------------------------------------------------------
+Explain that the Strategy pattern eliminates complex conditional statements by pushing 
+varying behaviors into separate classes implementing a common interface, adhering closely 
+to the Open-Closed Principle.
