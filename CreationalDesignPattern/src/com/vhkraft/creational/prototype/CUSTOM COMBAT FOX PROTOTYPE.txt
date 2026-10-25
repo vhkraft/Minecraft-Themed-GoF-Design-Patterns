@@ -1,0 +1,55 @@
+--------------------------------------------------------------------------------
+1. MINECRAFT CUSTOM COMBAT FOX PROTOTYPE : INSTANT CLONING & STATE DUPLICATION
+--------------------------------------------------------------------------------
+Minecraft Custom Combat Fox Prototype : Instant cloning & state duplication
+
+--------------------------------------------------------------------------------
+2. MINECRAFT METAPHOR CREATIVE EXPLANATION
+--------------------------------------------------------------------------------
+In single-player Minecraft, setting up a specialized Combat Fox holding a maxed-out 
+enchanted sword to automatically defend your base or farm takes careful taming and item trading. 
+Manually breeding foxes and tricking them into holding rare weapons from scratch every single 
+time you want a new patrol unit is painful. The Prototype pattern allows you to take your 
+master "Combat Fox" prototype and clone it instantly—duplicating its exact state, held weapon, 
+and attributes without repeating the tedious setup process from scratch.
+
+--------------------------------------------------------------------------------
+3. DESIGN PATTERN TITLE & SUMMARY
+--------------------------------------------------------------------------------
+Prototype Pattern : Specifies the kinds of objects to create using a prototypical instance, 
+and creates new objects by cloning this prototype.
+
+--------------------------------------------------------------------------------
+4. DESIGN PATTERN CORE IDEA
+--------------------------------------------------------------------------------
+- Prototype Interface (`MobPrototype`): Declares the cloning contract (`clone()`).
+- Concrete Prototype (`CombatFox`): Implements cloning logic to duplicate its internal state.
+- Client (`TestPrototype`): Clones the master prototype object at runtime to produce identical instances.
+
+--------------------------------------------------------------------------------
+5. NORMAL APPROACH VS. DESIGN PATTERN APPROACH
+--------------------------------------------------------------------------------
+- Normal Approach: Re-instantiating, re-breeding, and re-equipping every mob from scratch, 
+  leading to repetitive configuration logic and wasted resources.
+- Design Pattern Approach: Cloning an existing, fully initialized master object dynamically 
+  at runtime, preserving complex internal state cleanly and efficiently.
+
+--------------------------------------------------------------------------------
+6. FILE LIST & ORDER
+--------------------------------------------------------------------------------
+1. MobPrototype.java - Prototype interface defining the cloning contract.
+2. CombatFox.java - Concrete prototype class representing the combat fox with deep copy support.
+3. TestPrototype.java - Client class demonstrating cloning and independent state modification.
+
+--------------------------------------------------------------------------------
+7. SIMPLE INTERACTION FLOW
+--------------------------------------------------------------------------------
+Client -> masterFox.cloneMob() -> Returns cloned CombatFox with duplicated state
+
+--------------------------------------------------------------------------------
+8. INTERVIEW TIP
+--------------------------------------------------------------------------------
+Explain that the Prototype pattern is ideal when object creation is expensive or complex, 
+allowing you to avoid costly initialization by cloning pre-existing instances. Make sure to distinguish 
+between shallow copies (copying references) and deep copies (duplicating mutable internal objects).
+
