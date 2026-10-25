@@ -1,0 +1,65 @@
+--------------------------------------------------------------------------------
+1. MINECRAFT TOOL DURABILITY & REPAIR INSPECTOR : EXTERNAL OPERATION VISITATION
+--------------------------------------------------------------------------------
+Minecraft Tool Durability & Repair Inspector : External operation visitation
+
+--------------------------------------------------------------------------------
+2. MINECRAFT METAPHOR CREATIVE EXPLANATION
+--------------------------------------------------------------------------------
+In single-player Minecraft, your inventory holds precious gear with varying durability: a 
+Diamond Pickaxe, a Netherite Sword, and an Elytra. When returning from a long mining or 
+raiding expedition, you want to run different operations on your equipment without cluttering 
+the tool classes: a Repair Cost Visitor to calculate anvil materials and XP levels needed, 
+and a Durability Report Visitor to flag gear nearing breakage. Instead of bloating tool classes 
+with calculation logic, you pass a visitor across each tool element (`accept(visitor)`), allowing 
+new operations to be added externally without touching the underlying classes.
+
+--------------------------------------------------------------------------------
+3. DESIGN PATTERN TITLE & SUMMARY
+--------------------------------------------------------------------------------
+Visitor Pattern : Represents an operation to be performed on the elements of an object structure. 
+Visitor lets you define a new operation without changing the classes of the elements on which it operates.
+
+--------------------------------------------------------------------------------
+4. DESIGN PATTERN CORE IDEA
+--------------------------------------------------------------------------------
+- Element Interface (`ToolElement`): Declares the `accept(ToolVisitor)` method.
+- Concrete Elements (`DiamondPickaxe`, `NetheriteSword`, `Elytra`): Implement `accept` by calling 
+  the corresponding visit method on the visitor.
+- Visitor Interface (`ToolVisitor`): Declares visit operations for each concrete element type.
+- Concrete Visitors (`RepairCostVisitor`, `DurabilityReportVisitor`): Implement specific operations 
+  (repair calculation, durability warning checks) across elements.
+
+--------------------------------------------------------------------------------
+5. NORMAL APPROACH VS. DESIGN PATTERN APPROACH
+--------------------------------------------------------------------------------
+- Normal Approach: Crowding tool classes with countless methods for repairs, stats, and reports, 
+  violating the Open-Closed Principle whenever a new report or calculation is required.
+- Design Pattern Approach: Decoupling operations into standalone visitor objects, enabling new 
+  behavior to be introduced effortlessly without modifying existing element classes.
+
+--------------------------------------------------------------------------------
+6. FILE LIST & ORDER
+--------------------------------------------------------------------------------
+1. ToolElement.java - Element interface defining the visitor acceptance contract.
+2. DiamondPickaxe.java - Concrete element representing a diamond pickaxe tool.
+3. NetheriteSword.java - Concrete element representing a netherite sword weapon.
+4. Elytra.java - Concrete element representing rare flight gear.
+5. ToolVisitor.java - Visitor interface defining visit hooks for each tool type.
+6. RepairCostVisitor.java - Concrete visitor calculating anvil repair resources and XP.
+7. DurabilityReportVisitor.java - Concrete visitor checking wear-and-tear and warning thresholds.
+8. TestVisitor.java - Client class demonstrating tool inspection and visitor execution.
+
+--------------------------------------------------------------------------------
+7. SIMPLE INTERACTION FLOW
+--------------------------------------------------------------------------------
+Client -> RepairCostVisitor.visit(DiamondPickaxe) -> Element accepts visitor -> Calculation executed
+
+--------------------------------------------------------------------------------
+8. INTERVIEW TIP
+--------------------------------------------------------------------------------
+Explain how the Visitor pattern separates data structures from the operations performed on them—just 
+like passing a `RepairCostVisitor` or `DurabilityReportVisitor` across Minecraft tools (`DiamondPickaxe`, 
+`NetheriteSword`, `Elytra`) via `accept()`. Highlight how this allows you to introduce brand-new 
+operations without modifying existing element classes, leveraging double dispatch to resolve both the 
+visitor and element types dynamically.
