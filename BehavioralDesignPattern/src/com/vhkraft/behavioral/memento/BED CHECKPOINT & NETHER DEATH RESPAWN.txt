@@ -1,0 +1,57 @@
+--------------------------------------------------------------------------------
+1. MINECRAFT BED CHECKPOINT & NETHER DEATH RESPAWN : STATE SNAPSHOT RESTORATION
+--------------------------------------------------------------------------------
+Minecraft Bed Checkpoint & Nether Death Respawn : State snapshot restoration
+
+--------------------------------------------------------------------------------
+2. MINECRAFT METAPHOR CREATIVE EXPLANATION
+--------------------------------------------------------------------------------
+In single-player Minecraft, when you sleep in a bed in your overworld base, the game 
+captures a safe checkpoint snapshot of your player state (coordinates, health, and inventory 
+anchors). When you travel to the dangerous Nether, mine ancient debris, and tragically die 
+in a lava pool, the game doesn't expose your internal player data directly. Instead, 
+it uses a Caretaker (the Bed Checkpoint system) to retrieve the saved Memento and restore 
+your player character back to safety at your bed with your pre-trip inventory intact.
+
+--------------------------------------------------------------------------------
+3. DESIGN PATTERN TITLE & SUMMARY
+--------------------------------------------------------------------------------
+Memento Pattern : Without violating encapsulation, capture and externalize an object's 
+internal state so that the object can be restored to this state later.
+
+--------------------------------------------------------------------------------
+4. DESIGN PATTERN CORE IDEA
+--------------------------------------------------------------------------------
+- Memento (`PlayerStateMemento`): Stores the internal state snapshot of the originator safely.
+- Originator (`PlayerCharacter`): Creates a memento containing its current state and uses it to restore itself.
+- Caretaker (`BedCheckpointCaretaker`): Holds and manages the memento without inspecting its contents.
+
+--------------------------------------------------------------------------------
+5. NORMAL APPROACH VS. DESIGN PATTERN APPROACH
+--------------------------------------------------------------------------------
+- Normal Approach: Exposing public getters and setters for all internal player fields, allowing 
+  external classes to mutate or inspect sensitive state data directly, breaking encapsulation.
+- Design Pattern Approach: Encapsulating state inside an immutable memento object, allowing safe 
+  state capture and rollback without exposing internal implementation details.
+
+--------------------------------------------------------------------------------
+6. FILE LIST & ORDER
+--------------------------------------------------------------------------------
+1. PlayerStateMemento.java - Memento class holding immutable player state snapshot data.
+2. PlayerCharacter.java - Originator class representing the player whose state is saved and restored.
+3. BedCheckpointCaretaker.java - Caretaker class managing the bed respawn memento checkpoint.
+4. TestMemento.java - Client class simulating overworld check-in, Nether adventure, death, and respawn.
+
+--------------------------------------------------------------------------------
+7. SIMPLE INTERACTION FLOW
+--------------------------------------------------------------------------------
+Client -> PlayerCharacter.saveToCheckpoint() -> PlayerStateMemento -> BedCheckpointCaretaker holds memento
+Client (Nether Death) -> BedCheckpointCaretaker.getMemento() -> PlayerCharacter.restoreState() -> Back at Bed
+
+--------------------------------------------------------------------------------
+8. INTERVIEW TIP
+--------------------------------------------------------------------------------
+Explain how the Memento pattern preserves encapsulation while enabling undo or checkpoint rollbacks—just 
+like saving a player's spawn coordinates and inventory into a `PlayerStateMemento` when sleeping in a bed. 
+Highlight how the Caretaker (Bed Checkpoint) stores the memento without ever peeking at or modifying its 
+internal state, ensuring clean separation of concerns.
