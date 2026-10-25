@@ -1,0 +1,59 @@
+--------------------------------------------------------------------------------
+1. MINECRAFT WARDEN AGGRESSION STATE MACHINE : DYNAMIC BEHAVIOR ENCAPSULATION
+--------------------------------------------------------------------------------
+Minecraft Warden Aggression State Machine : Dynamic behavior encapsulation
+
+--------------------------------------------------------------------------------
+2. MINECRAFT METAPHOR CREATIVE EXPLANATION
+--------------------------------------------------------------------------------
+In single-player Minecraft, a Warden's behavior changes dramatically based on its alertness 
+and vibration tracking. In a calm state, it wanders slowly and sniffs. In an agitated state, 
+its heart beats faster as it locks onto sound sources. In an enraged state, it unleashes 
+devastating sonic boom attacks. Instead of cluttering the Warden class with massive conditional 
+statements (if-else/switch) for every action, the State pattern encapsulates each behavior mode 
+into its own dedicated class. The Warden delegates actions to its current state object, which 
+can also handle state transitions smoothly.
+
+--------------------------------------------------------------------------------
+3. DESIGN PATTERN TITLE & SUMMARY
+--------------------------------------------------------------------------------
+State Pattern : Allows an object to alter its behavior when its internal state changes. 
+The object will appear to change its class.
+
+--------------------------------------------------------------------------------
+4. DESIGN PATTERN CORE IDEA
+--------------------------------------------------------------------------------
+- State Interface (`WardenState`): Declares behavior methods common to all states.
+- Concrete States (`CalmState`, `AgitatedState`, `EnragedState`): Implement state-specific behaviors 
+  and manage transition triggers.
+- Context (`Warden`): Maintains an instance of a Concrete State subclass that defines current behavior.
+
+--------------------------------------------------------------------------------
+5. NORMAL APPROACH VS. DESIGN PATTERN APPROACH
+--------------------------------------------------------------------------------
+- Normal Approach: Monolithic entity class with complex conditional checks (`if-else` / `switch`) 
+  scattered across every method, making state logic brittle and hard to extend.
+- Design Pattern Approach: Encapsulating state logic into independent classes, cleanly isolating 
+  transitions and adhering to the Open-Closed Principle.
+
+--------------------------------------------------------------------------------
+6. FILE LIST & ORDER
+--------------------------------------------------------------------------------
+1. WardenState.java - State interface defining behavior contracts.
+2. CalmState.java - Concrete state for peaceful wandering and sniffing.
+3. AgitatedState.java - Concrete state for heartbeat tracking and increased alertness.
+4. EnragedState.java - Concrete state for aggressive sonic boom attacks.
+5. Warden.java - Context class holding the active state and delegating actions.
+6. TestState.java - Client class demonstrating dynamic state transitions during gameplay.
+
+--------------------------------------------------------------------------------
+7. SIMPLE INTERACTION FLOW
+--------------------------------------------------------------------------------
+Client -> Warden.detectVibration() -> CurrentState.handleAction() -> Transitions state if threshold met
+
+--------------------------------------------------------------------------------
+8. INTERVIEW TIP
+--------------------------------------------------------------------------------
+Explain that the State pattern is essentially Strategy pattern with awareness of state transitions. 
+Use it when an object's behavior depends heavily on its state, and it must change its behavior 
+at runtime depending on that state.
