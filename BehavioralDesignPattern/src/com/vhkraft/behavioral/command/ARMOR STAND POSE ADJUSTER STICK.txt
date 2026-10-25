@@ -1,0 +1,61 @@
+--------------------------------------------------------------------------------
+1. MINECRAFT ARMOR STAND POSE ADJUSTER STICK : REQUEST ENCAPSULATION & UNDO
+--------------------------------------------------------------------------------
+Minecraft Armor Stand Pose Adjuster Stick : Request encapsulation and undo
+
+--------------------------------------------------------------------------------
+2. MINECRAFT METAPHOR CREATIVE EXPLANATION
+--------------------------------------------------------------------------------
+In single-player Minecraft, when decorating your base with Armor Stands, you use a Pose 
+Adjuster Stick to customize their postures, like raising an arm or tilting a head for 
+dynamic displays. Instead of hardcoding complex pose-rotation math directly inside the 
+player interaction code or the armor stand entity, every physical adjustment is encapsulated 
+into a dedicated Command object. When you right-click the armor stand with the stick, the 
+invoker runs execute(). If you misadjust the pose, you crouch and trigger undo(), stepping 
+backward through your adjustment history stack.
+
+--------------------------------------------------------------------------------
+3. DESIGN PATTERN TITLE & SUMMARY
+--------------------------------------------------------------------------------
+Command Pattern : Encapsulates a request as an object, thereby letting you parameterize 
+clients with different requests, queue or log requests, and support undoable operations.
+
+--------------------------------------------------------------------------------
+4. DESIGN PATTERN CORE IDEA
+--------------------------------------------------------------------------------
+- Command Interface (`Command`): Declares execution and undo methods.
+- Concrete Commands (`RotateArmCommand`, `TiltHeadCommand`): Encapsulate specific requests and receiver actions.
+- Receiver (`ArmorStand`): The object that actually performs the work (modifying poses).
+- Invoker (`PoseController`): Holds a command and triggers execution or undo via a history stack.
+
+--------------------------------------------------------------------------------
+5. NORMAL APPROACH VS. DESIGN PATTERN APPROACH
+--------------------------------------------------------------------------------
+- Normal Approach: Tightly coupled interaction code where UI/tool inputs directly mutate 
+  receiver states, making it impossible to queue actions or implement undo/redo histories.
+- Design Pattern Approach: Encapsulating requests into standalone command objects, cleanly 
+  decoupling the invoker from the receiver and supporting robust undo/redo capabilities.
+
+--------------------------------------------------------------------------------
+6. FILE LIST & ORDER
+--------------------------------------------------------------------------------
+1. Command.java - Command interface defining execute and undo operations.
+2. ArmorStand.java - Receiver class representing the armor stand entity.
+3. RotateArmCommand.java - Concrete command for adjusting arm posture.
+4. TiltHeadCommand.java - Concrete command for tilting head posture.
+5. PoseController.java - Invoker class managing command history and undo stacks.
+6. TestCommand.java - Client class demonstrating command execution and undo workflows.
+
+--------------------------------------------------------------------------------
+7. SIMPLE INTERACTION FLOW
+--------------------------------------------------------------------------------
+Client -> PoseController.executeCommand(RotateArmCommand) -> Command.execute() -> ArmorStand.setArmAngle()
+
+--------------------------------------------------------------------------------
+8. INTERVIEW TIP
+--------------------------------------------------------------------------------
+Explain that the Command pattern packages an action into a standalone object—just like wrapping 
+an armor stand adjustment into a `RotateArmCommand` object instead of hardcoding joint rotations 
+inside the Pose Adjuster Stick. Highlight how storing these command objects in a stack makes implementing 
+undo/redo operations as simple as calling `undo()` on the last command in reverse, completely 
+decoupling the tool (Invoker) from the target entity (Receiver).
