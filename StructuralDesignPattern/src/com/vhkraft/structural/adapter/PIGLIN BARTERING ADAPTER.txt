@@ -1,0 +1,56 @@
+--------------------------------------------------------------------------------
+1. MINECRAFT PIGLIN BARTERING ADAPTER : INTERFACE TRANSLATION
+--------------------------------------------------------------------------------
+Minecraft Piglin Bartering Adapter : Interface translation
+
+--------------------------------------------------------------------------------
+2. MINECRAFT METAPHOR CREATIVE EXPLANATION
+--------------------------------------------------------------------------------
+In single-player Minecraft, suppose your automated base trading system strictly operates 
+using standard villager trade contracts (`VillagerTrader` expecting emeralds). However, 
+in the Nether, you want to trade with a Piglin, who completely rejects emeralds and 
+strictly demands Gold Ingots for bartering. Instead of rewriting your entire base 
+trading system, you use a `PiglinAdapter` that wraps the Piglin bartering mechanism 
+and translates emerald-based trade requests into gold ingot transactions.
+
+--------------------------------------------------------------------------------
+3. DESIGN PATTERN TITLE & SUMMARY
+--------------------------------------------------------------------------------
+Adapter Pattern : Converts the interface of a class into another interface clients expect, 
+allowing classes to work together that couldn't otherwise because of incompatible APIs.
+
+--------------------------------------------------------------------------------
+4. DESIGN PATTERN CORE IDEA
+--------------------------------------------------------------------------------
+- Target Interface (`VillagerTrader`): The standard interface expected by the client system.
+- Adaptee (`PiglinBarterSystem`): The incompatible existing class that accepts gold ingots.
+- Adapter (`PiglinAdapter`): Implements the Target interface and wraps the Adaptee to translate calls.
+
+--------------------------------------------------------------------------------
+5. NORMAL APPROACH VS. DESIGN PATTERN APPROACH
+--------------------------------------------------------------------------------
+- Normal Approach: Rewriting core client trading logic or modifying third-party/legacy classes 
+  directly, leading to tightly coupled, messy code.
+- Design Pattern Approach: Introducing an adapter wrapper that translates incompatible method 
+  calls cleanly without modifying existing source code.
+
+--------------------------------------------------------------------------------
+6. FILE LIST & ORDER
+--------------------------------------------------------------------------------
+1. VillagerTrader.java - Target interface for standard trades.
+2. PiglinBarterSystem.java - Adaptee class representing the incompatible Nether bartering system.
+3. PiglinAdapter.java - Adapter class translating Villager trades into Piglin bartering.
+4. TestAdapter.java - Client class demonstrating seamless interaction.
+
+--------------------------------------------------------------------------------
+7. SIMPLE INTERACTION FLOW
+--------------------------------------------------------------------------------
+Client -> VillagerTrader.tradeEmerald() -> PiglinAdapter -> PiglinBarterSystem.throwGoldIngotForBarter()
+
+--------------------------------------------------------------------------------
+8. INTERVIEW TIP
+--------------------------------------------------------------------------------
+Explain that the Adapter pattern acts as a bridge between two incompatible interfaces. 
+Use it when integrating legacy code, third-party libraries, or disparate APIs into an existing system 
+without changing their source code.
+
