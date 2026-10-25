@@ -1,0 +1,60 @@
+--------------------------------------------------------------------------------
+1. MINECRAFT POTION BREWING WORKFLOW : INVARIANT ALGORITHM SKELETON
+--------------------------------------------------------------------------------
+Minecraft Potion Brewing Workflow : Invariant algorithm skeleton
+
+--------------------------------------------------------------------------------
+2. MINECRAFT METAPHOR CREATIVE EXPLANATION
+--------------------------------------------------------------------------------
+In single-player Minecraft, brewing any potion follows a fixed standard sequence at the Brewing 
+Stand: heat the stand with Blaze Powder, fill water bottles, add Nether Wart to create an Awkward 
+Base Potion, add the specific ingredient for the desired effect, and optionally enhance it with 
+Redstone or Glowstone. Instead of duplicating the entire brewing loop for every potion type, the 
+Template Method pattern defines the fixed workflow skeleton in a base class (`BrewingStandWorkflow`). 
+Subclasses (`StrengthPotionBrewing`, `RegenerationPotionBrewing`) only provide the specific ingredient 
+and decide whether to apply optional enhancements via hook methods.
+
+--------------------------------------------------------------------------------
+3. DESIGN PATTERN TITLE & SUMMARY
+--------------------------------------------------------------------------------
+Template Method Pattern : Defines the skeleton of an algorithm in an operation, deferring 
+some steps to subclasses. Template Method lets subclasses redefine certain steps of an 
+algorithm without changing the algorithm's structure.
+
+--------------------------------------------------------------------------------
+4. DESIGN PATTERN CORE IDEA
+--------------------------------------------------------------------------------
+- Abstract Class (`BrewingStandWorkflow`): Defines the `final` template method `brewPotion()` 
+  specifying step execution order, concrete common steps, abstract Primitive Operations, and optional Hooks.
+- Concrete Classes (`StrengthPotionBrewing`, `RegenerationPotionBrewing`): Implement 
+  primitive steps and override hooks.
+
+--------------------------------------------------------------------------------
+5. NORMAL APPROACH VS. DESIGN PATTERN APPROACH
+--------------------------------------------------------------------------------
+- Normal Approach: Duplicating the multi-step brewing boilerplates (heat, water bottles, Nether Wart) 
+  across multiple individual potion classes, leading to code duplication and inconsistent workflows.
+- Design Pattern Approach: Locking down the invariant sequence in a single base class template method, 
+  allowing subclasses to supply only the custom ingredients without touching the brewing structure.
+
+--------------------------------------------------------------------------------
+6. FILE LIST & ORDER
+--------------------------------------------------------------------------------
+1. BrewingStandWorkflow.java - Abstract class defining the invariant template method and step contracts.
+2. StrengthPotionBrewing.java - Concrete subclass defining Strength potion ingredients.
+3. RegenerationPotionBrewing.java - Concrete subclass defining Regeneration potion ingredients and hooks.
+4. TestTemplateMethod.java - Client class executing brewing operations for different potions.
+
+--------------------------------------------------------------------------------
+7. SIMPLE INTERACTION FLOW
+--------------------------------------------------------------------------------
+Client -> Subclass.brewPotion() -> Base.heatStand() -> Base.addNetherWart() -> Subclass.addMainIngredient() -> Subclass.applyEnhancementHook()
+
+--------------------------------------------------------------------------------
+8. INTERVIEW TIP
+--------------------------------------------------------------------------------
+Explain how the Template Method pattern enforces algorithm structure while allowing customization—just 
+like how every Minecraft potion must follow the fixed sequence of heating, water bottle loading, and 
+Nether Wart base creation, while individual potion recipes like `StrengthPotionBrewing` only customize 
+the main ingredient (Blaze Powder) and optional hooks (Redstone extension). This highlights the Hollywood 
+Principle ("Don't call us, we'll call you"), where the base template controls execution flow.
